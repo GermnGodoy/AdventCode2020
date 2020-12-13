@@ -5,11 +5,9 @@ input_txt = open("input.txt", "r")
 input = input_txt.read().splitlines()
 input_txt.close()
 
-sites = np.zeros((128, 8))
-
 string = ''
 
-high_id = 0
+id_array = np.zeros(127 * 8 + 8)
 
 for i in range(len(input)):
     id = 0
@@ -29,14 +27,8 @@ for i in range(len(input)):
 
     id = result_row * 8 + result_column
 
-    if id > high_id:
-        high_id = id
-
-    sites[result_row][result_column] = 1
+    id_array[id] = 1
 
 
-print(column)
-print(row)
-print(result_column)
-print(result_row)
-print(high_id)
+a=np.where(id_array == 1)
+print(a)
