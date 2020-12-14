@@ -10,7 +10,7 @@ input_txt.close()
 bin_string = ''
 
 #Declares an array with all the possible ids
-id_array = np.zeros(826)
+id_array = np.zeros(827)
 
 #MAIN LOOP
 for i in range(len(input)):
