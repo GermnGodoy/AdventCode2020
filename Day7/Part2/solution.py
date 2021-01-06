@@ -5,27 +5,32 @@ input_txt.close()
 main_dic = {} 
 new_dic = {}
 total_shinies = 0
+hola = 0
 
 
-def shynies(bag, main_dic, new_dic):
+def shynies(bag, main_dic):
     value = 0
-    for key in main_dic[bag]:
+    a = 0 
+    global total_shinies
 
-            if key[-1] == 's':
-                key = key[:len(key)-1]
+    if main_dic[bag] == 0:
+            print("0 FOUND")
+            a=int(1)
+            print("Finished {}".format(bag))
+            return a 
+    else:
+        for key in main_dic[bag]:
             
-            if key not in main_dic:
-                value += 1
-            else:
-                l = shynies(key, main_dic, new_dic)
-                value += l 
-                l = 0
-    
-    new_dic[bag] = value
-    print("{} contains {} shynies".format(bag, new_dic[bag]))
-    return value
-    
+            if key in main_dic:
+                print("REPETING PROCESS WITH {}".format(key))
+                a=int(main_dic[bag][key]) * shynies(key, main_dic)
+                print("The above bag contains: {}".format(int(main_dic[bag][key])))
+                print("Total shinies inside: {}".format(total_shinies))
+            total_shinies = a + 1
+            print("Total Shinies = {}".format(total_shinies))
 
+    print("Finished {}".format(bag))
+    return total_shinies
 
 #DEFINE
 for i in range(len(input)):
@@ -52,18 +57,17 @@ for i in range(len(input)):
                 input[i][1][e][1] = input[i][1][e][1].replace(" bag", "")
             
             dic[input[i][1][e][1]] = input[i][1][e][0]
-        
-    
+    print("The bag is {}".format(bag))
+    print(dic)
     main_dic[bag] = dic
+
+
+print(main_dic['shiny gold'])
 
 
 
 
 print("-----Analizes bag is {}-----".format("Shiny Gold"))
-shynies('shiny gold', main_dic, new_dic)
+hola = int(shynies('shiny gold', main_dic))
 
-for bag in new_dic.keys():
-    if int(new_dic[bag]) > 0:
-        total_shinies += 1 
-    
-print("The amount of shinies is {}".format(total_shinies))
+print("The amount of bags in a shiny is {}".format(hola))
